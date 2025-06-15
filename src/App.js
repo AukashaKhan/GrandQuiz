@@ -13,7 +13,7 @@ export default function App() {
   useEffect(() => {
     setLoading(true);
     setError(null);
-    let url = "https://saymidr.github.io/GrandQuiz/";
+    let url = "";
     if (page === "users") url = "https://jsonplaceholder.typicode.com/users";
     else if (page === "posts") url = "https://jsonplaceholder.typicode.com/posts";
     else if (page === "todos") url = "https://jsonplaceholder.typicode.com/todos";

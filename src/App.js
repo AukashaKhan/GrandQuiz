@@ -9,6 +9,7 @@ export default function App() {
   const [error, setError] = useState(null);
   const [formData, setFormData] = useState({});
   const [editingId, setEditingId] = useState(null);
+  const [isAdding, setIsAdding] = useState(false); // Moved this line here
 
   useEffect(() => {
     setLoading(true);
@@ -40,12 +41,10 @@ export default function App() {
     setEditingId(null);
     setIsAdding(true); 
   };
-const [isAdding, setIsAdding] = useState(false);
 
   const startEdit = (item) => {
     setFormData(item);
     setEditingId(item.id);
-
   };
 
   const handleInputChange = (e) => {
@@ -305,193 +304,4 @@ const [isAdding, setIsAdding] = useState(false);
             <li
               key={p}
               onClick={() => {
-                setPage(p);
-                setEditingId(null);
-                setFormData({});
-              }}
-              style={{
-                ...styles.navItem,
-                ...(page === p ? styles.navItemActive : {}),
-              }}
-            >
-              {p.charAt(0).toUpperCase() + p.slice(1)}
-            </li>
-          ))}
-        </ul>
-      </nav>
-
-      <main style={styles.main}>
-        <header style={styles.header}>
-          <h1 style={styles.heading}>
-            {page.charAt(0).toUpperCase() + page.slice(1)}
-          </h1>
-          <button style={styles.addBtn} onClick={startAdd}>
-            + Add New
-          </button>
-        </header>
-
-        {(editingId !== null ||isAdding) && (
-          <section style={styles.formSection}>
-            <h3>
-              {editingId ? "Edit" : "Add New"} {page.slice(0, -1)}
-            </h3>
-            <form style={styles.form} onSubmit={handleSubmit}>
-              {renderFormFields()}
-              <div style={{ marginTop: 16, display: "flex", gap: 8 }}>
-                <button type="submit" style={styles.submitBtn}>
-                  {editingId ? "Update" : "Add"}
-                </button>
-                {editingId && (
-                  <button
-                    type="button"
-                    style={styles.cancelBtn}
-                    onClick={() => {
-                      setEditingId(null);
-                      setFormData({});
-                    }}
-                  >
-                    Cancel
-                  </button>
-                )}
-              </div>
-            </form>
-          </section>
-        )}
-
-        <section style={{ marginTop: 24 }}>{renderTable()}</section>
-      </main>
-    </div>
-  );
-}
-
-const styles = {
-  container: {
-    display: "flex",
-    minHeight: "100vh",
-    fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
-    background: "#f5f7fa",
-    color: "#333",
-  },
-  sidebar: {
-    width: 220,
-    background: "#2c3e50",
-    color: "white",
-    padding: "20px 15px",
-    boxShadow: "2px 0 5px rgba(0,0,0,0.1)",
-  },
-  sidebarTitle: {
-    fontSize: 22,
-    fontWeight: "bold",
-    marginBottom: 25,
-    textAlign: "center",
-    letterSpacing: 1,
-  },
-  navList: {
-    listStyleType: "none",
-    padding: 0,
-  },
-  navItem: {
-    padding: "10px 12px",
-    cursor: "pointer",
-    borderRadius: 6,
-    marginBottom: 10,
-    fontWeight: 500,
-    transition: "background-color 0.3s ease",
-  },
-  navItemActive: {
-    backgroundColor: "#2980b9",
-  },
-  main: {
-    flexGrow: 1,
-    padding: 25,
-  },
-  header: {
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center",
-    marginBottom: 20,
- 
-},
-heading: {
-margin: 0,
-fontSize: 28,
-color: "#34495e",
-},
-addBtn: {
-backgroundColor: "#27ae60",
-color: "white",
-border: "none",
-padding: "10px 18px",
-fontSize: 16,
-fontWeight: "bold",
-borderRadius: 6,
-cursor: "pointer",
-boxShadow: "0 4px 8px rgba(39, 174, 96, 0.3)",
-transition: "background-color 0.3s ease",
-},
-formSection: {
-background: "white",
-padding: 20,
-borderRadius: 8,
-boxShadow: "0 4px 15px rgba(0,0,0,0.1)",
-maxWidth: 600,
-},
-form: {
-display: "flex",
-flexDirection: "column",
-},
-label: {
-marginBottom: 12,
-fontWeight: "600",
-},
-input: {
-marginTop: 6,
-padding: 10,
-borderRadius: 5,
-border: "1px solid #ccc",
-fontSize: 14,
-width: "100%",
-boxSizing: "border-box",
-},
-submitBtn: {
-backgroundColor: "#2980b9",
-color: "white",
-border: "none",
-padding: "10px 18px",
-fontSize: 16,
-borderRadius: 6,
-cursor: "pointer",
-fontWeight: "bold",
-boxShadow: "0 4px 8px rgba(41, 128, 185, 0.3)",
-transition: "background-color 0.3s ease",
-},
-cancelBtn: {
-backgroundColor: "#e74c3c",
-color: "white",
-border: "none",
-padding: "10px 18px",
-fontSize: 16,
-borderRadius: 6,
-cursor: "pointer",
-fontWeight: "bold",
-boxShadow: "0 4px 8px rgba(231, 76, 60, 0.3)",
-transition: "background-color 0.3s ease",
-},
-table: {
-width: "100%",
-borderCollapse: "collapse",
-},
-row: {
-borderBottom: "1px solid #ddd",
-},
-editBtn: {
-backgroundColor: "#f39c12",
-color: "white",
-border: "none",
-padding: "6px 12px",
-fontSize: 14,
-borderRadius: 5,
-cursor: "pointer",
-transition: "background-color 0.3s ease",
-},
-};
+                set
